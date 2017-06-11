@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表</title>
+</head>
+<body>
+    <h1>maodo-list</h1>
+    <ul>
+
+    </ul>
+    <script src="./jquery.js"></script>
+    <script>
+        $.ajax({
+            url:'/demoed',
+            type:'get',
+            success:function(mg){
+                if(mg.code==1){
+                    var str="";
+                    for(var i=0;i<mg.msg.length;i++){
+                        str+='<li><a href="/detail?No='+mg.msg[i].No+'">'+mg.msg[i].title+'</a></li>'
+                    }
+                    $('ul').html(str);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
