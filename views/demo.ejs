@@ -9,6 +9,13 @@
     <ul>
 
     </ul>
+    <p>标题<input type="text" name="title" class="title"><br></p>
+    <p>内容
+       <textarea name="content" id="" cols="30" rows="10" class="content">
+
+        </textarea>
+    </p>
+    <button class="add">添加</button>
     <script src="./jquery.js"></script>
     <script>
         $.ajax({
@@ -23,6 +30,21 @@
                     $('ul').html(str);
                 }
             }
+        })
+        $('.add').on('click',function(){
+            var title=$('.title').val(),
+                content=$('.content').val();
+            console.log(title);
+            $.ajax({
+                url:'/add',
+                type:'post',
+                data:{title:title,content:content},
+                success:function(msg){
+                    if(msg.code==0){
+                        window.location.reload();
+                    }
+                }
+            })
         })
     </script>
 </body>
